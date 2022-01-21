@@ -57,7 +57,6 @@
                         </li>
                         <li class="nav-item">
                             <button type="button" class="btn btn-outline-danger">Logout</button>
-                            <!-- <a class="nav-link active" href="#">Logout</a> -->
                     </ul>
                 </div>
             </div>
@@ -67,99 +66,133 @@
 
 
     <section class="container">
-        
-            <div class="rounded-3 p-3" style="background-color: #DDE4F0; margin-top: 30px; height: 85vh;">
-                <h1 class="text-center mb-3"><i class="bi bi-people-fill m-2"></i>Customer</h1>
 
-                <div class="row align-items-center pb-3 justify-content-between">
-    
-                    <!-- <div class="col-6 bg-danger">
-                        <h2 class="mt-1 mb-0 text-white">Search All Customers</h2>
-                    </div> -->
-        
-                        <div class="col-4 ">
-                            <div class="input-group mb-3" style="height: 10px;">
-                                <input type="text" class="form-control" placeholder="Search Customer" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                <button class="btn btn-success" type="button" id="button-addon2"><i class="bi bi-search m-2"></i>Search</button>
-                            </div>                
-                        </div>
-                       <div class="col-3">
-                        <button type="button" class="btn btn-primary mt-2"><i class="bi bi-person-plus-fill m-2"></i>Add Customer</button>
-                        <button type="button" class="btn btn-danger mt-2"><i class="bi bi-backspace-fill  m-2"></i>Clear</button>
-                       </div>
-                </div>
-                <hr>
-                <div class="row align-items-center pt-3">
-                    <div class="col-12 mt-2">
-                        <table class="table table-dark table-striped">
-                            <thead>
-                                <tr>
-                                  <th scope="col">Customer ID</th>
-                                  <th scope="col">Name</th>
-                                  <th scope="col">Address</th>
-                                  <th scope="col">Salary</th>
-                                  <th class="text-center" scope="col" style="width:15%">Action</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <th scope="row">C001</th>
-                                  <td>Sri</td>
-                                  <td>Kandy</td>
-                                  <td>100000</td>
-                                  <td>
-                                      <button class="btn btn-warning">Update</button>
-                                      <button class="btn btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                  <th scope="row">C002</th>
-                                  <td>Danapala</td>
-                                  <td>Gampola</td>
-                                  <td>50000</td>
-                                  <td>
-                                    <button class="btn btn-warning">Update</button>
-                                    <button class="btn btn-danger">Delete</button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">C003</th>
-                                    <td>Somapala</td>
-                                    <td>Colombo</td>
-                                    <td>60000</td>
-                                    <td>
-                                        <button class="btn btn-warning">Update</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                      </td>
-                                  </tr>
-                                  
-                              </tbody>
-                        </table>
+        <!-- Add Customer Model Start -->
+        <div class="modal fade" id="addCustomer" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+            tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalToggleLabel"><i
+                                class="bi bi-person-plus-fill m-2"></i>Add Customer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="cusId" class="form-label">Customer ID</label>
+                                <input type="text" class="form-control" id="cusId">
+                            </div>
+                            <div class="mb-3">
+                                <label for="cusName" class="form-label">Customer Name</label>
+                                <input type="text" class="form-control" id="cusName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="cusAddress" class="form-label">Customer Address</label>
+                                <input type="text" class="form-control" id="cusAddress">
+                            </div>
+                            <div class="mb-3">
+                                <label for="cusSalary" class="form-label">Customer Salary</label>
+                                <input type="text" class="form-control" id="cusSalary">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary mt-2">Add Customer</button>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Add Customer Model End -->
 
-                <nav>
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item disabled">
-                        <span class="page-link">Previous</span>
-                      </li>
-                      <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item" aria-current="page">
-                        <span class="page-link">2</span>
-                      </li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                      </li>
-                    </ul>
-                  </nav>
 
+        <div class="rounded-3 p-3" style="background-color: #DDE4F0; margin-top: 30px; height: 85vh;">
+            <h1 class="text-center mb-3"><i class="bi bi-people-fill m-2"></i>Customer</h1>
+
+            <div class="row align-items-center pb-3 justify-content-between">
+                <div class="col-4 ">
+                    <div class="input-group mb-3" style="height: 10px;">
+                        <input type="text" class="form-control" placeholder="Search Customer"
+                            aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-success" type="button" id="button-addon2"><i
+                                class="bi bi-search m-2"></i>Search</button>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal"
+                        data-bs-target="#addCustomer"><i class="bi bi-person-plus-fill m-2"></i>Add Customer</button>
+                    <button type="button" class="btn btn-danger mt-2"><i
+                            class="bi bi-backspace-fill  m-2"></i>Clear</button>
+                </div>
+            </div>
+            <hr>
+            <div class="row align-items-center pt-3">
+                <div class="col-12 mt-2">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Customer ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Salary</th>
+                                <th class="text-center" scope="col" style="width:15%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">C001</th>
+                                <td>Sri</td>
+                                <td>Kandy</td>
+                                <td>100000</td>
+                                <td>
+                                    <button class="btn btn-warning">Update</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">C002</th>
+                                <td>Danapala</td>
+                                <td>Gampola</td>
+                                <td>50000</td>
+                                <td>
+                                    <button class="btn btn-warning">Update</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">C003</th>
+                                <td>Somapala</td>
+                                <td>Colombo</td>
+                                <td>60000</td>
+                                <td>
+                                    <button class="btn btn-warning">Update</button>
+                                    <button class="btn btn-danger">Delete</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            
-        
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item" aria-current="page">
+                        <span class="page-link">2</span>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
 
-        
+        </div>
     </section>
 
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"
