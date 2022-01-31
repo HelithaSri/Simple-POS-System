@@ -294,12 +294,14 @@
     //   var custSalary = $("#cusSalary").val();
 
       $("#btnAddCus").click(function () {
-        var custId = $("#cusId").val();
-        var custName = $("#cusName").val();
-        var custAddress = $("#cusAddress").val();
-        var custSalary = $("#cusSalary").val();
+        let custId = $("#cusId").val();
+        let custName = $("#cusName").val();
+        let custAddress = $("#cusAddress").val();
+        let custSalary = $("#cusSalary").val();
 
-        var nRow = "<tr><th>"+custId+"</th><td>"+custName+"</td><td>"+custAddress+"</td><td>"+custSalary+"</td></tr>"
+        let btns = "<button class='btn btn-warning'><i class='bi bi-arrow-clockwise'></i></button> <button class='btn btn-danger'><i class='bi bi-trash'></i></button>"
+
+        let nRow = "<tr><th>"+custId+"</th><td>"+custName+"</td><td>"+custAddress+"</td><td>"+custSalary+"</td><td class='text-center'>"+btns+"</td></tr>"
 
         $("#custTbl > tbody").append(nRow);
 
