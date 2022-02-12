@@ -2,7 +2,7 @@
 @author : HelithaSri
 @email : helitha.pravin@gmail.com
 @create date : 2022-01-19  18:00
-@modify date : 2022-01-23  15:54
+@modify date : 2022-02-12  14:44
 @desc [simple POS system UI - CSS Frameworks]
 -->
 
@@ -135,7 +135,7 @@
                 </div>
                 <div class="mb-3">
                   <label for="cusSalary" class="form-label"
-                    >Customer Salary</label
+                    >Customer Contact Number</label
                   >
                   <input type="text" class="form-control" id="cusSalary" />
                 </div>
@@ -183,23 +183,31 @@
               <form>
                 <div class="mb-3">
                   <label for="cusId" class="form-label">Customer ID</label>
-                  <input type="text" class="form-control" id="cusId" />
+                  <input type="text" class="form-control" id="cusIdUpdate" />
                 </div>
                 <div class="mb-3">
                   <label for="cusName" class="form-label">Customer Name</label>
-                  <input type="text" class="form-control" id="cusName" />
+                  <input type="text" class="form-control" id="cusNameUpdate" />
                 </div>
                 <div class="mb-3">
                   <label for="cusAddress" class="form-label"
                     >Customer Address</label
                   >
-                  <input type="text" class="form-control" id="cusAddress" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cusAddressUpdate"
+                  />
                 </div>
                 <div class="mb-3">
                   <label for="cusSalary" class="form-label"
-                    >Customer Salary</label
+                    >Customer Contact Number</label
                   >
-                  <input type="text" class="form-control" id="cusSalary" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cusSalaryUpdate"
+                  />
                 </div>
               </form>
             </div>
@@ -267,7 +275,7 @@
                     <th>Customer ID</th>
                     <th>Name</th>
                     <th>Address</th>
-                    <th>Salary</th>
+                    <th>Tel.</th>
                     <th class="text-center" style="width: 15%">Action</th>
                   </tr>
                 </thead>
@@ -276,7 +284,7 @@
                     <th scope="row">C001</th>
                     <td>Sri</td>
                     <td>Kandy</td>
-                    <td>100000</td>
+                    <td>767059199</td>
                     <td class="text-center">
                       <button class="btn btn-warning">
                         <i class="bi bi-arrow-clockwise"></i>
@@ -290,7 +298,7 @@
                     <th scope="row">C002</th>
                     <td>Danapala</td>
                     <td>Gampola</td>
-                    <td>50000</td>
+                    <td>767059199</td>
                     <td class="text-center">
                       <button class="btn btn-warning">
                         <i class="bi bi-arrow-clockwise"></i>
@@ -304,7 +312,7 @@
                     <th scope="row">C003</th>
                     <td>Somapala</td>
                     <td>Colombo</td>
-                    <td>60000</td>
+                    <td>767059199</td>
                     <td class="text-center">
                       <button class="btn btn-warning">
                         <i class="bi bi-arrow-clockwise"></i>
@@ -349,28 +357,54 @@
 
     <script src="assets/jQuery/jquery-3.6.0.min.js"></script>
     <script>
-
-    //   var custId = $("#cusId").val();
-    //   var custName = $("#cusName").val();
-    //   var custAddress = $("#cusAddress").val();
-    //   var custSalary = $("#cusSalary").val();
+      //   var custId = $("#cusId").val();
+      //   var custName = $("#cusName").val();
+      //   var custAddress = $("#cusAddress").val();
+      //   var custSalary = $("#cusSalary").val();
 
       $("#btnAddCus").click(function () {
+        $("#custTbl > tbody > tr").off();
+
         let custId = $("#cusId").val();
         let custName = $("#cusName").val();
         let custAddress = $("#cusAddress").val();
-        let custSalary = $("#cusSalary").val();
+        let custTP = $("#cusSalary").val();
 
-        let btns = "<button class='btn btn-warning' data-bs-target='#updateCustomer' data-bs-toggle='modal'><i class='bi bi-arrow-clockwise'></i></button> <button class='btn btn-danger'><i class='bi bi-trash'></i></button>"
+        let btns =
+          "<button class='btn btn-warning' data-bs-target='#updateCustomer' data-bs-toggle='modal'><i class='bi bi-arrow-clockwise'></i></button> <button class='btn btn-danger'><i class='bi bi-trash'></i></button>";
 
-        let nRow = "<tr><th>"+custId+"</th><td>"+custName+"</td><td>"+custAddress+"</td><td>"+custSalary+"</td><td class='text-center'>"+btns+"</td></tr>"
+        let nRow =
+          "<tr><th>" +
+          custId +
+          "</th><td>" +
+          custName +
+          "</td><td>" +
+          custAddress +
+          "</td><td>" +
+          custTP +
+          "</td><td class='text-center'>" +
+          btns +
+          "</td></tr>";
 
         $("#custTbl > tbody").append(nRow);
 
         // Clear input Fields
         $("#cusId,#cusName,#cusName,#cusAddress,#cusSalary").val("");
-      });
 
+        //bind the events to the table rows after the row was added
+        $("#custTbl > tbody > tr").click(function () {
+          let cusID = $(this).children(":eq(0)").text(); // select first td and get text
+          let cusName = $(this).children(":eq(1)").text();
+          let cusAddress = $(this).children(":eq(2)").text();
+          let cusTP = $(this).children(":eq(3)").text();
+
+          // set values for the input fields
+          $("#cusIdUpdate").val(cusID);
+          $("#cusNameUpdate").val(cusName);
+          $("#cusAddressUpdate").val(cusAddress);
+          $("#cusSalaryUpdate").val(cusTP);
+        });
+      });
     </script>
   </body>
 </html>
