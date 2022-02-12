@@ -158,6 +158,68 @@
       </div>
       <!-- Add Customer Model End -->
 
+      <!-- Update Customer Model Start -->
+      <div
+        class="modal fade"
+        id="updateCustomer"
+        aria-hidden="true"
+        aria-labelledby="exampleModalToggleLabel"
+        tabindex="-1"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+              <h5 class="modal-title" id="exampleModalToggleLabel">
+                <i class="bi bi-person-plus-fill m-2"></i>Update Customer
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="cusId" class="form-label">Customer ID</label>
+                  <input type="text" class="form-control" id="cusId" />
+                </div>
+                <div class="mb-3">
+                  <label for="cusName" class="form-label">Customer Name</label>
+                  <input type="text" class="form-control" id="cusName" />
+                </div>
+                <div class="mb-3">
+                  <label for="cusAddress" class="form-label"
+                    >Customer Address</label
+                  >
+                  <input type="text" class="form-control" id="cusAddress" />
+                </div>
+                <div class="mb-3">
+                  <label for="cusSalary" class="form-label"
+                    >Customer Salary</label
+                  >
+                  <input type="text" class="form-control" id="cusSalary" />
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary mt-2"
+                data-bs-dismiss="modal"
+              >
+                Cancle
+              </button>
+              <button id="btnAddCus" type="button" class="btn btn-primary mt-2">
+                Update Customer
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Update Customer Model End -->
+
       <div
         class="rounded-3 p-3"
         style="background-color: #dde4f0; margin-top: 30px"
@@ -299,7 +361,7 @@
         let custAddress = $("#cusAddress").val();
         let custSalary = $("#cusSalary").val();
 
-        let btns = "<button class='btn btn-warning'><i class='bi bi-arrow-clockwise'></i></button> <button class='btn btn-danger'><i class='bi bi-trash'></i></button>"
+        let btns = "<button class='btn btn-warning' data-bs-target='#updateCustomer' data-bs-toggle='modal'><i class='bi bi-arrow-clockwise'></i></button> <button class='btn btn-danger'><i class='bi bi-trash'></i></button>"
 
         let nRow = "<tr><th>"+custId+"</th><td>"+custName+"</td><td>"+custAddress+"</td><td>"+custSalary+"</td><td class='text-center'>"+btns+"</td></tr>"
 
@@ -307,7 +369,6 @@
 
         // Clear input Fields
         $("#cusId,#cusName,#cusName,#cusAddress,#cusSalary").val("");
-
       });
 
     </script>
