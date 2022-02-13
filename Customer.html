@@ -122,22 +122,27 @@
                 <div class="mb-3">
                   <label for="cusId" class="form-label">Customer ID</label>
                   <input type="text" class="form-control" id="cusId" />
+                  <small id="error1">* Customer ID is a required field, Pattern C00-001</small>
+                  <!-- <small id="error1"></small> -->
                 </div>
                 <div class="mb-3">
                   <label for="cusName" class="form-label">Customer Name</label>
                   <input type="text" class="form-control" id="cusName" />
+                  <small id="error2">* Customer Name is required field, Min 5 & Max 10</small>
                 </div>
                 <div class="mb-3">
                   <label for="cusAddress" class="form-label"
                     >Customer Address</label
                   >
                   <input type="text" class="form-control" id="cusAddress" />
+                  <small id="error3">* Customer Address is required field, Min 5</small>
                 </div>
                 <div class="mb-3">
                   <label for="cusSalary" class="form-label"
                     >Customer Contact Number</label
                   >
                   <input type="text" class="form-control" id="cusSalary" />
+                  <small id="error4">* Customer Address is required field, Ex:0767059199</small>
                 </div>
               </form>
             </div>
@@ -200,13 +205,13 @@
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="cusSalary" class="form-label"
+                  <label for="cusContact" class="form-label"
                     >Customer Contact Number</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="cusSalaryUpdate"
+                    id="cusContactUpdate"
                   />
                 </div>
               </form>
@@ -219,7 +224,7 @@
               >
                 Cancle
               </button>
-              <button id="btnAddCus" type="button" class="btn btn-primary mt-2">
+              <button id="btnUpdateCus" type="button" class="btn btn-primary mt-2">
                 Update Customer
               </button>
             </div>
@@ -357,6 +362,44 @@
 
     <script src="assets/jQuery/jquery-3.6.0.min.js"></script>
     <script>
+
+/* Validation Start - Add Customer */
+        $(error1).css({"display":"none"});
+        $(error2).css({"display":"none"});
+        $(error3).css({"display":"none"});
+        $(error4).css({"display":"none"});
+
+        var regExCusID = /^(C00-)[0-9]{3,4}$/;
+        var RegExCusName=/^[A-z]{5,10}$/;
+        var RegExCusAddress=/^(No.)[0-9]{2} [A-z]{4,100}$/;
+        var RegExCusTP=/^(07)[0-9]{8,9}$/;
+
+        validation(regExCusID,'#cusId','#error1',"#cusName");
+        validation(RegExCusName,'#cusName','#error2','#cusAddress');
+        validation(RegExCusAddress,'#cusAddress','#error3','#cusSalary');
+        validation(RegExCusTP,'#cusSalary','#error4',"#btnAddCus");
+
+        /* Validation End */
+
+        /* Validation Start - Function */
+
+        function validation(regEx, id, error, nextId) {
+            $(id).keyup(function () {
+              let input = $(id).val();
+              if (regEx.test(input)) {
+                $(id).css({'border': '2px solid green', 'background-color':'#fff'});
+                $(error).css({"display":"none"});
+              } else {
+                $(id).css({'border': '2px solid red', 'background-color':'#ffe6e6'});
+                $(error).css({"color":"red","display":"block"});
+                
+              }
+            });
+        }
+
+        /* Validation End - Function */
+
+
       //   var custId = $("#cusId").val();
       //   var custName = $("#cusName").val();
       //   var custAddress = $("#cusAddress").val();
@@ -393,6 +436,7 @@
 
         //bind the events to the table rows after the row was added
         $("#custTbl > tbody > tr").click(function () {
+          let o = $(this);
           let cusID = $(this).children(":eq(0)").text(); // select first td and get text
           let cusName = $(this).children(":eq(1)").text();
           let cusAddress = $(this).children(":eq(2)").text();
@@ -402,8 +446,25 @@
           $("#cusIdUpdate").val(cusID);
           $("#cusNameUpdate").val(cusName);
           $("#cusAddressUpdate").val(cusAddress);
-          $("#cusSalaryUpdate").val(cusTP);
+          $("#cusContactUpdate").val(cusTP);
+
+          /* $("#btnUpdateCus").click(function(){
+            let custId = $("#cusIdUpdate").val();  
+            let custName = $("#cusNameUpdate").val();
+            let custAddress = $("#cusAddressUpdate").val();
+            let custTP = $("#cusContactUpdate").val();
+
+            let rRow = "<tr><th>" + custId + "</th><td>" + custName + "</td><td>" + custAddress + "</td><td>" + custTP + "</td><td class='text-center'>" + btns + "</td></tr>";
+            $(o).replaceWith(rRow);
+          
+          }); */
+
         });
+
+        
+
+
+
       });
     </script>
   </body>
