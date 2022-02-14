@@ -164,64 +164,45 @@
       <!-- Add Customer Model End -->
 
       <!-- Update Customer Model Start -->
-      <div
-        class="modal fade"
-        id="updateCustomer"
-        aria-hidden="true"
-        aria-labelledby="exampleModalToggleLabel"
-        tabindex="-1"
-      >
+      <div class="modal fade" id="updateCustomer" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header bg-success text-white">
               <h5 class="modal-title" id="exampleModalToggleLabel">
                 <i class="bi bi-person-plus-fill m-2"></i>Update Customer
               </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <form>
                 <div class="mb-3">
-                  <label for="cusId" class="form-label">Customer ID</label>
+                  <label for="cusIdUpdate" class="form-label">Customer ID</label>
                   <input type="text" class="form-control" id="cusIdUpdate" />
+                  <small id="error01">* Customer ID is a required field, Pattern C00-001</small>
+
                 </div>
                 <div class="mb-3">
-                  <label for="cusName" class="form-label">Customer Name</label>
+                  <label for="cusNameUpdate" class="form-label">Customer Name</label>
                   <input type="text" class="form-control" id="cusNameUpdate" />
+                  <small id="error02">* Customer Name is required field, Min 5 & Max 10</small>
+
                 </div>
                 <div class="mb-3">
-                  <label for="cusAddress" class="form-label"
-                    >Customer Address</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cusAddressUpdate"
-                  />
+                  <label for="cusAddressUpdate" class="form-label">Customer Address</label>
+                  <input type="text" class="form-control" id="cusAddressUpdate" />
+                  <small id="error03">* Customer Address is required field, Min 5</small>
+
                 </div>
                 <div class="mb-3">
-                  <label for="cusContact" class="form-label"
-                    >Customer Contact Number</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="cusContactUpdate"
-                  />
+                  <label for="cusContactUpdate" class="form-label">Customer Contact Number</label>
+                  <input type="text" class="form-control" id="cusContactUpdate" />
+                  <small id="error04">* Customer Address is required field, Ex:0767059199</small>
+
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary mt-2"
-                data-bs-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal">
                 Cancle
               </button>
               <button id="btnUpdateCus" type="button" class="btn btn-primary mt-2">
@@ -374,30 +355,47 @@
         var RegExCusAddress=/^(No.)[0-9]{2} [A-z]{4,100}$/;
         var RegExCusTP=/^(07)[0-9]{8,9}$/;
 
-        validation(regExCusID,'#cusId','#error1',"#cusName");
-        validation(RegExCusName,'#cusName','#error2','#cusAddress');
-        validation(RegExCusAddress,'#cusAddress','#error3','#cusSalary');
-        validation(RegExCusTP,'#cusSalary','#error4',"#btnAddCus");
+        validation(regExCusID,'#cusId','#error1','#cusName', '#btnAddCus');
+        validation(RegExCusName,'#cusName','#error2','#cusAddress', '#btnAddCus');
+        validation(RegExCusAddress,'#cusAddress','#error3','#cusSalary', '#btnAddCus');
+        validation(RegExCusTP,'#cusSalary','#error4',"#btnAddCus", '#btnAddCus');
+
+        validation(regExCusID,'#cusIdUpdate','#error01',"#cusNameUpdate", '#btnUpdateCus');
+        validation(RegExCusName,'#cusNameUpdate','#error02','#cusAddressUpdate', '#btnUpdateCus');
+        validation(RegExCusAddress,'#cusAddressUpdate','#error03','#cusContactUpdate', '#btnUpdateCus');
+        validation(RegExCusTP,'#cusContactUpdate','#error04', '#btnUpdateCus', '#btnUpdateCus');
 
         /* Validation End */
 
-        /* Validation Start - Function */
+        /* Validation Function Start */
 
-        function validation(regEx, id, error, nextId) {
+        function validation(regEx, id, error, nextId, btn) {
+
             $(id).keyup(function () {
               let input = $(id).val();
-              if (regEx.test(input)) {
-                $(id).css({'border': '2px solid green', 'background-color':'#fff'});
-                $(error).css({"display":"none"});
-              } else {
-                $(id).css({'border': '2px solid red', 'background-color':'#ffe6e6'});
-                $(error).css({"color":"red","display":"block"});
-                
+              if (!regEx.test(input)) {
+                if ($(id).val() != '') {
+                  $(id).css({ 'border': '2px solid red', 'background-color': '#ffe6e6' });
+                  $(error).css({ "color": "red", "display": "block" });
+                  $(btn).prop('disabled', true);
+                }
+              }
+              else {
+                $(id).css({ 'border': '2px solid green', 'background-color': '#fff' });
+                $(error).css({ "display": "none" });
+                $(id).keyup(function (event) {
+                  console.log(event);
+                  if (event.key == "Enter") {
+                    $(btn).prop('disabled', false);
+                    $(nextId).focus();
+                  }
+                });
               }
             });
-        }
 
-        /* Validation End - Function */
+          }
+
+        /* Validation Function End */
 
 
       //   var custId = $("#cusId").val();
