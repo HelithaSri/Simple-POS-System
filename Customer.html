@@ -351,9 +351,9 @@
         $(error4).css({"display":"none"});
 
         var regExCusID = /^(C00-)[0-9]{3,4}$/;
-        var RegExCusName=/^[A-z]{5,10}$/;
-        var RegExCusAddress=/^(No.)[0-9]{2} [A-z]{4,100}$/;
-        var RegExCusTP=/^(07)[0-9]{8,9}$/;
+          var RegExCusName = /^[A-z]{5,10}$/;
+          var RegExCusAddress = /^(No.)[0-9]{2} [A-z]{4,100}$/;
+          var RegExCusTP = /^(07)[0-9]{8,9}$/;
 
         validation(regExCusID,'#cusId','#error1','#cusName', '#btnAddCus');
         validation(RegExCusName,'#cusName','#error2','#cusAddress', '#btnAddCus');
@@ -458,11 +458,6 @@
           }); */
 
         });
-
-        
-
-
-
       });
     </script>
   </body>
