@@ -73,6 +73,8 @@ document.getElementById("item-clicks").addEventListener("click",function (){
 
 /* Customer Section Js - Start */
 
+$("#btnAddCus").prop('disabled', true);
+
 /* Validation - Start */
 $('#error1').css({ "display": "none" });
 $('#error2').css({ "display": "none" });
@@ -107,7 +109,7 @@ addCustomer();
 
 // Customer Validation Function - Start
 
-function validation(regEx, id, error, nextId, btn) {
+/* function validation(regEx, id, error, nextId, btn) {
 
     $(id).keyup(function () {
         let input = $(id).val();
@@ -116,6 +118,7 @@ function validation(regEx, id, error, nextId, btn) {
                 $(id).css({ 'border': '2px solid red', 'background-color': '#ffe6e6' });
                 $(error).css({ "color": "red", "display": "block" });
                 $(btn).prop('disabled', true);
+                $(id).focus();
             }
         }
         else {
@@ -126,11 +129,30 @@ function validation(regEx, id, error, nextId, btn) {
                 if (event.key == "Enter") {
                     $(btn).prop('disabled', false);
                     $(nextId).focus();
+                    alert("Da")
                 }
             });
         }
     });
 
+} */
+
+function validation(regEx, id, error, nextId, btn) {
+    $(id).keyup(function (event) {
+      let input = $(id).val();
+      if (regEx.test(input)) {
+        $(id).css({ 'border': '2px solid green', 'background-color': '#fff' });
+        $(error).css({"display":"none"});
+        if (event.key == "Enter") {
+            $(btn).prop('disabled', false);
+            $(nextId).focus();
+        }
+      } else {
+        $(id).css({ 'border': '2px solid red', 'background-color': '#ffe6e6' });
+        $(error).css({"color":"red","display":"block"});
+        $(btn).prop('disabled', true);
+      }
+    });
 }
 
 // Customer Validation Function - End
@@ -142,7 +164,6 @@ function validation(regEx, id, error, nextId, btn) {
 function addCustomer() {
     $("#btnAddCus").click(function () {
         $("#cusTblBody > tr").off();
-        alert("d");
         let custId = $("#cusIdAdd").val();
         let custName = $("#cusNameAdd").val();
         let custAddress = $("#cusAddressAdd").val();
