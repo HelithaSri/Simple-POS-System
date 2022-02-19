@@ -86,56 +86,34 @@ $('#error02').css({ "display": "none" });
 $('#error03').css({ "display": "none" });
 $('#error04').css({ "display": "none" });
 
-var regExCusID = /^(C00-)[0-9]{3,4}$/;
+/* var regExCusID = /^(C00-)[0-9]{3,4}$/;
 var RegExCusName = /^[A-z]{5,10}$/;
 var RegExCusAddress = /^(No.)[0-9]{2} [A-z]{4,100}$/;
-var RegExCusTP = /^(07)[0-9]{8,9}$/;
+var RegExCusTP = /^(07)[0-9]{8,9}$/; */
+
+var regExCusID = /^(C00-)[0-9]{3,4}$/;
+var RegExCusName =/^[A-z ]{5,20}$/;
+var RegExCusAddress = /^[0-9/A-z. ,]{7,}$/;
+var RegExCusSalary = /^[0-9]{1,}[.]?[0-9]{1,2}$/;
 
 // Customer Validation Function Call - Start
 
 validation(regExCusID, '#cusIdAdd', '#error1', '#cusNameAdd', '#btnAddCus');
 validation(RegExCusName, '#cusNameAdd', '#error2', '#cusAddressAdd', '#btnAddCus');
 validation(RegExCusAddress, '#cusAddressAdd', '#error3', '#cusSalaryAdd', '#btnAddCus');
-validation(RegExCusTP, '#cusSalaryAdd', '#error4', "#btnAddCus", '#btnAddCus');
+validation(RegExCusSalary, '#cusSalaryAdd', '#error4', "#btnAddCus", '#btnAddCus');
 
 validation(regExCusID, '#cusIdUpdate', '#error01', "#cusNameUpdate", '#btnUpdateCus');
 validation(RegExCusName, '#cusNameUpdate', '#error02', '#cusAddressUpdate', '#btnUpdateCus');
 validation(RegExCusAddress, '#cusAddressUpdate', '#error03', '#cusSalaryUpdate', '#btnUpdateCus');
-validation(RegExCusTP, '#cusSalaryUpdate', '#error04', '#btnUpdateCus', '#btnUpdateCus');
+validation(RegExCusSalary, '#cusSalaryUpdate', '#error04', '#btnUpdateCus', '#btnUpdateCus');
 
 // Customer Validation Function Call - End
 
 addCustomer();
 
+
 // Customer Validation Function - Start
-
-/* function validation(regEx, id, error, nextId, btn) {
-
-    $(id).keyup(function () {
-        let input = $(id).val();
-        if (!regEx.test(input)) {
-            if ($(id).val() != '') {
-                $(id).css({ 'border': '2px solid red', 'background-color': '#ffe6e6' });
-                $(error).css({ "color": "red", "display": "block" });
-                $(btn).prop('disabled', true);
-                $(id).focus();
-            }
-        }
-        else {
-            $(id).css({ 'border': '2px solid green', 'background-color': '#fff' });
-            $(error).css({ "display": "none" });
-            $(id).keyup(function (event) {
-                console.log(event);
-                if (event.key == "Enter") {
-                    $(btn).prop('disabled', false);
-                    $(nextId).focus();
-                    alert("Da")
-                }
-            });
-        }
-    });
-
-} */
 
 function validation(regEx, id, error, nextId, btn) {
     $(id).keyup(function (event) {
@@ -162,17 +140,24 @@ function validation(regEx, id, error, nextId, btn) {
 // Customer Add Function - Start
 
 function addCustomer() {
+    var customerObj = new CustomerObject();
     $("#btnAddCus").click(function () {
-        $("#cusTblBody > tr").off();
+
+        // $("#cusTblBody > tr").off(); 
+
         let custId = $("#cusIdAdd").val();
         let custName = $("#cusNameAdd").val();
         let custAddress = $("#cusAddressAdd").val();
-        let custTP = $("#cusSalaryAdd").val();
+        let custSalary = $("#cusSalaryAdd").val();
 
         let btns =
             "<button class='btn btn-warning' data-bs-target='#updateCustomer' data-bs-toggle='modal'><i class='bi bi-arrow-clockwise'></i></button> <button class='btn btn-danger'><i class='bi bi-trash'></i></button>";
 
-        let nRow =
+        customerObj.setCustomer(custId,custName,custAddress,custSalary,btns);
+        customerDB.push(customerObj);
+        console.log(customerDB);
+
+       /*  let nRow =
             "<tr><th>" +
             custId +
             "</th><td>" +
@@ -183,13 +168,13 @@ function addCustomer() {
             custTP +
             "</td><td class='text-center'>" +
             btns +
-            "</td></tr>";
+            "</td></tr>"; */
 
-        $("#cusTblBody").append(nRow);
+        // $("#cusTblBody").append(nRow);
 
         // Clear input Fields
         $("#cusIdAdd,#cusNameAdd,#cusAddressAdd,#cusSalaryAdd").val("");
-
+        
     });
 
 }
@@ -197,3 +182,7 @@ function addCustomer() {
 // Customer Add Function - End
 
 /* Customer Section Js - End */
+
+
+
+
