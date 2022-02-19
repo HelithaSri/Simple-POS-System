@@ -78,4 +78,4 @@ function addCustomer() {
         $("#cusIdAdd,#cusNameAdd,#cusAddressAdd,#cusSalaryAdd").val("");
     });
 }
-// Customer Add Function - End Consumer related things
+// Customer Add Function - End 
