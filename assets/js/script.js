@@ -73,10 +73,10 @@ document.getElementById("item-clicks").addEventListener("click",function (){
 
 /* Customer Section Js - Start */
 
-$("#btnAddCus").prop('disabled', true);
+// $("#btnAddCus").prop('disabled', true);
 
 /* Validation - Start */
-$('#error1').css({ "display": "none" });
+/* $('#error1').css({ "display": "none" });
 $('#error2').css({ "display": "none" });
 $('#error3').css({ "display": "none" });
 $('#error4').css({ "display": "none" });
@@ -85,20 +85,20 @@ $('#error01').css({ "display": "none" });
 $('#error02').css({ "display": "none" });
 $('#error03').css({ "display": "none" });
 $('#error04').css({ "display": "none" });
-
+ */
 /* var regExCusID = /^(C00-)[0-9]{3,4}$/;
 var RegExCusName = /^[A-z]{5,10}$/;
 var RegExCusAddress = /^(No.)[0-9]{2} [A-z]{4,100}$/;
 var RegExCusTP = /^(07)[0-9]{8,9}$/; */
 
-var regExCusID = /^(C00-)[0-9]{3,4}$/;
+/* var regExCusID = /^(C00-)[0-9]{3,4}$/;
 var RegExCusName =/^[A-z ]{5,20}$/;
 var RegExCusAddress = /^[0-9/A-z. ,]{7,}$/;
-var RegExCusSalary = /^[0-9]{1,}[.]?[0-9]{1,2}$/;
+var RegExCusSalary = /^[0-9]{1,}[.]?[0-9]{1,2}$/; */
 
 // Customer Validation Function Call - Start
 
-validation(regExCusID, '#cusIdAdd', '#error1', '#cusNameAdd', '#btnAddCus');
+/* validation(regExCusID, '#cusIdAdd', '#error1', '#cusNameAdd', '#btnAddCus');
 validation(RegExCusName, '#cusNameAdd', '#error2', '#cusAddressAdd', '#btnAddCus');
 validation(RegExCusAddress, '#cusAddressAdd', '#error3', '#cusSalaryAdd', '#btnAddCus');
 validation(RegExCusSalary, '#cusSalaryAdd', '#error4', "#btnAddCus", '#btnAddCus');
@@ -106,16 +106,16 @@ validation(RegExCusSalary, '#cusSalaryAdd', '#error4', "#btnAddCus", '#btnAddCus
 validation(regExCusID, '#cusIdUpdate', '#error01', "#cusNameUpdate", '#btnUpdateCus');
 validation(RegExCusName, '#cusNameUpdate', '#error02', '#cusAddressUpdate', '#btnUpdateCus');
 validation(RegExCusAddress, '#cusAddressUpdate', '#error03', '#cusSalaryUpdate', '#btnUpdateCus');
-validation(RegExCusSalary, '#cusSalaryUpdate', '#error04', '#btnUpdateCus', '#btnUpdateCus');
+validation(RegExCusSalary, '#cusSalaryUpdate', '#error04', '#btnUpdateCus', '#btnUpdateCus'); */
 
 // Customer Validation Function Call - End
 
-addCustomer();
+/* addCustomer(); */
 
 
 // Customer Validation Function - Start
 
-function validation(regEx, id, error, nextId, btn) {
+/* function validation(regEx, id, error, nextId, btn) {
     $(id).keyup(function (event) {
       let input = $(id).val();
       if (regEx.test(input)) {
@@ -131,7 +131,7 @@ function validation(regEx, id, error, nextId, btn) {
         $(btn).prop('disabled', true);
       }
     });
-}
+} */
 
 // Customer Validation Function - End
 
@@ -139,7 +139,7 @@ function validation(regEx, id, error, nextId, btn) {
 
 // Customer Add Function - Start
 
-function addCustomer() {
+/* function addCustomer() {
     var customerObj = new CustomerObject();
     $("#btnAddCus").click(function () {
 
@@ -157,7 +157,7 @@ function addCustomer() {
         customerDB.push(customerObj);
         console.log(customerDB);
 
-       /*  let nRow =
+        let nRow =
             "<tr><th>" +
             custId +
             "</th><td>" +
@@ -168,7 +168,7 @@ function addCustomer() {
             custTP +
             "</td><td class='text-center'>" +
             btns +
-            "</td></tr>"; */
+            "</td></tr>";
 
         // $("#cusTblBody").append(nRow);
 
@@ -177,7 +177,7 @@ function addCustomer() {
         
     });
 
-}
+} */
 
 // Customer Add Function - End
 
